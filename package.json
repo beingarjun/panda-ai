@@ -1,0 +1,5 @@
+{
+  "name": "panda-ai",
+  "private": true,
+  "workspaces": ["server", "web"]
+}
