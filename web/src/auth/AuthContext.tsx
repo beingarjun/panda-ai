@@ -1,12 +1,22 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { postJSON, getJSON } from "../api";
 
-type User = { uid: number; email: string } | null;
+type User = { 
+  uid: number; 
+  email: string; 
+  name?: string; 
+  avatar_url?: string; 
+  provider?: string; 
+} | null;
+
 type Ctx = {
   user: User;
   signin(email: string, password: string): Promise<void>;
   signup(email: string, password: string): Promise<void>;
   signout(): Promise<void>;
+  signinWithGoogle(): void;
+  signinWithMicrosoft(): void;
+  signinWithApple(): void;
 };
 
 const AuthCtx = createContext<Ctx>(null as any);
@@ -15,6 +25,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User>(null);
 
   useEffect(() => {
+    // Check for auth errors in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('error') === 'auth_failed') {
+      alert('Authentication failed. Please try again.');
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
     getJSON<User>("/api/auth/me").then(setUser).catch(()=>{});
   }, []);
 
@@ -35,7 +52,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
   }
 
-  return <AuthCtx.Provider value={{ user, signin, signup, signout }}>{children}</AuthCtx.Provider>;
+  function signinWithGoogle() {
+    window.location.href = "/api/auth/google";
+  }
+
+  function signinWithMicrosoft() {
+    window.location.href = "/api/auth/microsoft";
+  }
+
+  function signinWithApple() {
+    window.location.href = "/api/auth/apple";
+  }
+
+  return (
+    <AuthCtx.Provider value={{ 
+      user, 
+      signin, 
+      signup, 
+      signout, 
+      signinWithGoogle, 
+      signinWithMicrosoft, 
+      signinWithApple 
+    }}>
+      {children}
+    </AuthCtx.Provider>
+  );
 }
 
 export function useAuth() { return useContext(AuthCtx); }
