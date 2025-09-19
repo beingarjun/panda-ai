@@ -4,13 +4,16 @@ A full-stack TypeScript application for AI-powered competitor analysis with OAut
 
 ## ✨ Features
 
-- 🔐 **Multi-Provider OAuth**: Google, Microsoft, Apple Sign-In
+- 🔐 **Multi-Provider OAuth**: Google, Microsoft Sign-In
 - 🤖 **AI Analysis Pipeline**: Automated competitor research
 - 📊 **Dashboard**: Real-time analytics and insights
+- 💰 **Subscription System**: Free, Pro, Enterprise plans with usage limits
+- 🚫 **Smart Paywall**: Usage tracking with upgrade prompts
 - 🎨 **Modern UI**: React with responsive design
 - 🚀 **Fast Development**: Hot reload with Vite
 - 📦 **TypeScript**: Full type safety
 - 🐳 **Docker Ready**: Containerized deployment
+- ☁️ **Free Hosting**: Deploy to Vercel + Railway at $0 cost
 
 ## 🚀 Quick Start
 
@@ -81,12 +84,37 @@ chmod +x setup.sh
 
 ## 🌐 Deployment
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
+See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed deployment instructions.
 
 ### Free Hosting Options:
 - **Railway** (Backend) + **Vercel** (Frontend) [Recommended]
 - **Render** (Full-stack)
 - **Heroku** (Backend) + **Netlify** (Frontend)
+
+### Quick Deploy Steps:
+1. **Push to GitHub** → Create repo and push code
+2. **Deploy Backend** → Connect Railway to GitHub repo
+3. **Deploy Frontend** → Connect Vercel to GitHub repo
+4. **Set Environment Variables** → Add OAuth credentials and API URLs
+
+**📖 Complete Guide**: [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
+
+## 💰 Subscription System
+
+The app includes a complete freemium model:
+
+### Plans Available:
+- **Free**: 3 analyses/month, 5 competitors
+- **Pro**: Unlimited analyses, 25 competitors ($29/month)
+- **Enterprise**: Unlimited everything ($99/month)
+
+### Features:
+- Usage tracking and progress indicators
+- Smart paywall with upgrade prompts
+- Subscription management dashboard
+- OAuth integration for easy signup
+
+**Note**: Demo paywall - no real payments processed
 
 ## 🛠️ Tech Stack
 
