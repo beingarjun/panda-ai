@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐼 Panda AI - Investor Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .presentation {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.8s ease-out;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .slide.white {
+            background: white;
+            color: #333;
+        }
+        
+        .slide.dark {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #87ceeb;
+        }
+        
+        .slide.white h2 {
+            color: #667eea;
+        }
+        
+        .slide.white h3 {
+            color: #764ba2;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .slide.white .metric-card {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .metric-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .slide.white .metric-number {
+            color: #667eea;
+        }
+        
+        .metric-label {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .table th {
+            background: rgba(255, 215, 0, 0.3);
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        .table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .slide.white .table {
+            background: rgba(102, 126, 234, 0.05);
+            color: #333;
+        }
+        
+        .slide.white .table th {
+            background: rgba(102, 126, 234, 0.2);
+        }
+        
+        .slide.white .table td {
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+        }
+        
+        .chart-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .slide.white .chart-container {
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            height: 200px;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .bar {
+            flex: 1;
+            background: linear-gradient(to top, #ffd700, #ffed4e);
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+            padding: 10px;
+            position: relative;
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            font-size: 0.9rem;
+            color: white;
+        }
+        
+        .slide.white .bar-label {
+            color: #333;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #ffd700;
+            z-index: 1;
+        }
+        
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            border: 2px solid #ffd700;
+            flex: 1;
+            margin: 0 10px;
+        }
+        
+        .slide.white .timeline-item {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: #667eea;
+        }
+        
+        .demo-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .slide.white .demo-section {
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .demo-button {
+            background: #ffd700;
+            color: #333;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        .highlight {
+            background: #ffd700;
+            color: #333;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .slide.white .highlight {
+            background: #667eea;
+            color: white;
+        }
+        
+        ul {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 10px 0;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        
+        .column {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .slide.white .column {
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .funding-stage {
+            background: rgba(255, 215, 0, 0.2);
+            border-left: 4px solid #ffd700;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        
+        .slide.white .funding-stage {
+            background: rgba(102, 126, 234, 0.1);
+            border-left-color: #667eea;
+        }
+        
+        .risk-item {
+            background: rgba(255, 99, 99, 0.2);
+            border-left: 4px solid #ff6363;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .slide.white .risk-item {
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .mitigation {
+            background: rgba(72, 187, 120, 0.2);
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        
+        .slide.white .mitigation {
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .presentation {
+                padding: 10px;
+            }
+            
+            .slide {
+                padding: 30px;
+                min-height: auto;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .metric-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide">
+            <h1>🐼 Panda AI</h1>
+            <div style="text-align: center; margin: 40px 0;">
+                <h2>Autonomous AI Visibility Platform</h2>
+                <p style="font-size: 1.5rem; margin: 30px 0; opacity: 0.9;">
+                    Bridging the $2.4B market gap left by Bear AI with autonomous agents
+                </p>
+                <div style="font-size: 1.2rem; margin-top: 40px;">
+                    <div>📅 <strong>Date:</strong> September 2025</div>
+                    <div style="margin-top: 10px;">💰 <strong>Seeking:</strong> $5M Series A</div>
+                    <div style="margin-top: 10px;">🎯 <strong>Market:</strong> AI Visibility & Optimization</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problem Statement -->
+        <div class="slide white">
+            <h2>🚨 The Problem: Bear AI Left Critical Gaps</h2>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-number">97%</div>
+                    <div class="metric-label">Market Uncaptured</div>
+                    <p style="margin-top: 15px;">Bear AI only captured 3% of the $2.4B market</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">1,567%</div>
+                    <div class="metric-label">Platform Gap</div>
+                    <p style="margin-top: 15px;">50+ platforms needed vs Bear AI's 3</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">100%</div>
+                    <div class="metric-label">Manual Dependency</div>
+                    <p style="margin-top: 15px;">Zero automation in Bear AI's approach</p>
+                </div>
+            </div>
+
+            <h3>Customer Pain Points Bear AI Ignored:</h3>
+            <ul>
+                <li><strong>Manual Work Overload:</strong> 40+ hours/week spent on optimization</li>
+                <li><strong>Limited Coverage:</strong> Missing 94% of AI platforms</li>
+                <li><strong>No Predictions:</strong> Reactive approach discovers problems too late</li>
+                <li><strong>Poor ROI:</strong> High cost ($200/month) with limited automation</li>
+                <li><strong>Scale Limitations:</strong> Cannot handle enterprise requirements</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Market Sizing -->
+        <div class="slide">
+            <h2>📊 Market Sizing & Opportunity</h2>
+            
+            <div class="chart-container">
+                <h3>Total Addressable Market (TAM): $2.4B</h3>
+                <div class="bar-chart">
+                    <div class="bar" style="height: 15%;">
+                        <span>$360M</span>
+                        <div class="bar-label">Bear AI<br>Captured</div>
+                    </div>
+                    <div class="bar" style="height: 85%;">
+                        <span>$2.04B</span>
+                        <div class="bar-label">Available<br>Market</div>
+                    </div>
+                    <div class="bar" style="height: 40%;">
+                        <span>$960M</span>
+                        <div class="bar-label">Panda AI<br>Target (5 years)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="column">
+                    <h3>Market Breakdown</h3>
+                    <ul>
+                        <li><strong>Enterprise SaaS:</strong> $890M</li>
+                        <li><strong>AI Startups:</strong> $650M</li>
+                        <li><strong>Marketing Agencies:</strong> $860M</li>
+                        <li><strong>Growth Rate:</strong> 35% CAGR</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Geographic Distribution</h3>
+                    <ul>
+                        <li><strong>North America:</strong> 45% ($1.08B)</li>
+                        <li><strong>Europe:</strong> 30% ($720M)</li>
+                        <li><strong>Asia Pacific:</strong> 20% ($480M)</li>
+                        <li><strong>Rest of World:</strong> 5% ($120M)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Customer Segments -->
+        <div class="slide white">
+            <h2>🎯 Target Customer Segments</h2>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <h3>Enterprise SaaS</h3>
+                    <div class="metric-number">12,500</div>
+                    <div class="metric-label">Target Companies</div>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>Annual Revenue: $10M-$1B</li>
+                        <li>Need: Multi-platform visibility</li>
+                        <li>Pain: Manual optimization</li>
+                        <li>ARPU: $500-2,000/month</li>
+                    </ul>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>AI-First Startups</h3>
+                    <div class="metric-number">8,750</div>
+                    <div class="metric-label">Target Companies</div>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>Funding: Series A-C</li>
+                        <li>Need: Competitive advantage</li>
+                        <li>Pain: Slow optimization</li>
+                        <li>ARPU: $200-800/month</li>
+                    </ul>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>Digital Agencies</h3>
+                    <div class="metric-number">15,000</div>
+                    <div class="metric-label">Target Companies</div>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>Clients: 5-50 accounts</li>
+                        <li>Need: Scalable solution</li>
+                        <li>Pain: Resource constraints</li>
+                        <li>ARPU: $150-600/month</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Customer Acquisition Strategy</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Phase 1 (0-6 months)</h4>
+                    <p><strong>Bear AI Switchers</strong></p>
+                    <p>Direct outreach to dissatisfied Bear AI customers</p>
+                    <p>Target: 500 customers</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Phase 2 (6-12 months)</h4>
+                    <p><strong>Enterprise Expansion</strong></p>
+                    <p>Sales team targeting Enterprise SaaS</p>
+                    <p>Target: 1,500 customers</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Phase 3 (12-18 months)</h4>
+                    <p><strong>Market Leadership</strong></p>
+                    <p>Brand marketing and partnerships</p>
+                    <p>Target: 5,000 customers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Development Costs -->
+        <div class="slide">
+            <h2>💻 Development Costs & Timeline</h2>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Development Phase</th>
+                        <th>Duration</th>
+                        <th>Team Size</th>
+                        <th>Cost</th>
+                        <th>Key Deliverables</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>MVP Development</strong></td>
+                        <td>6 months</td>
+                        <td>8 engineers</td>
+                        <td>$800K</td>
+                        <td>Basic autonomous agents, 10 platforms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Platform Expansion</strong></td>
+                        <td>6 months</td>
+                        <td>12 engineers</td>
+                        <td>$1.2M</td>
+                        <td>50+ platforms, predictive analytics</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enterprise Features</strong></td>
+                        <td>6 months</td>
+                        <td>15 engineers</td>
+                        <td>$1.5M</td>
+                        <td>Multi-modal AI, enterprise security</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scale & Optimization</strong></td>
+                        <td>6 months</td>
+                        <td>20 engineers</td>
+                        <td>$2M</td>
+                        <td>Global scaling, advanced features</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="two-column">
+                <div class="column">
+                    <h3>Technology Stack Costs</h3>
+                    <ul>
+                        <li><strong>Cloud Infrastructure:</strong> $50K/month</li>
+                        <li><strong>AI/ML Compute:</strong> $75K/month</li>
+                        <li><strong>Third-party APIs:</strong> $25K/month</li>
+                        <li><strong>Security & Compliance:</strong> $30K/month</li>
+                        <li><strong>Monitoring & Analytics:</strong> $20K/month</li>
+                    </ul>
+                    <p style="margin-top: 20px;"><strong>Total Monthly OpEx:</strong> <span class="highlight">$200K</span></p>
+                </div>
+                <div class="column">
+                    <h3>Team Composition</h3>
+                    <ul>
+                        <li><strong>AI/ML Engineers:</strong> 8 ($150K avg)</li>
+                        <li><strong>Backend Engineers:</strong> 6 ($140K avg)</li>
+                        <li><strong>Frontend Engineers:</strong> 4 ($130K avg)</li>
+                        <li><strong>DevOps Engineers:</strong> 3 ($145K avg)</li>
+                        <li><strong>Product Managers:</strong> 2 ($160K avg)</li>
+                    </ul>
+                    <p style="margin-top: 20px;"><strong>Total Annual Payroll:</strong> <span class="highlight">$3.2M</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Product Demo -->
+        <div class="slide white">
+            <h2>🎮 Live Product Demo</h2>
+            
+            <div class="demo-section">
+                <h3>Experience the Autonomous AI Difference</h3>
+                <p style="font-size: 1.2rem; margin: 20px 0;">
+                    See why Panda AI's autonomous agents outperform Bear AI's manual approach
+                </p>
+                
+                <div style="margin: 30px 0;">
+                    <a href="https://panda-ai-demo.surge.sh" class="demo-button" target="_blank">
+                        🚀 Interactive Dashboard Demo
+                    </a>
+                    <a href="https://panda-ai-demo.surge.sh/pitch-deck.html" class="demo-button" target="_blank">
+                        📊 Full Competitive Analysis
+                    </a>
+                </div>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h4>🐻 Bear AI Style Demo</h4>
+                        <ul>
+                            <li>Basic visibility tracking</li>
+                            <li>Manual recommendations</li>
+                            <li>3 platform monitoring</li>
+                            <li>Static reporting</li>
+                            <li>No predictive intelligence</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>🐼 Panda AI Demo</h4>
+                        <ul>
+                            <li>Autonomous AI agents (94-98% performance)</li>
+                            <li>Predictive analytics (98% accuracy)</li>
+                            <li>50+ platform monitoring</li>
+                            <li>Real-time optimization</li>
+                            <li>Multi-modal AI analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Key Demo Features</h3>
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <h4>Autonomous Agents</h4>
+                    <p>See 4 AI agents working 24/7 with real performance metrics</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Predictive Forecasting</h4>
+                    <p>30-day visibility predictions with 98% confidence</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Real-time Intelligence</h4>
+                    <p>Live competitor monitoring and opportunity detection</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Financial Projections -->
+        <div class="slide">
+            <h2>📈 Financial Projections & Revenue Model</h2>
+            
+            <div class="chart-container">
+                <h3>5-Year Revenue Projection</h3>
+                <div class="bar-chart">
+                    <div class="bar" style="height: 10%;">
+                        <span>$2.4M</span>
+                        <div class="bar-label">Year 1<br>2026</div>
+                    </div>
+                    <div class="bar" style="height: 35%;">
+                        <span>$12M</span>
+                        <div class="bar-label">Year 2<br>2027</div>
+                    </div>
+                    <div class="bar" style="height: 65%;">
+                        <span>$28M</span>
+                        <div class="bar-label">Year 3<br>2028</div>
+                    </div>
+                    <div class="bar" style="height: 85%;">
+                        <span>$52M</span>
+                        <div class="bar-label">Year 4<br>2029</div>
+                    </div>
+                    <div class="bar" style="height: 100%;">
+                        <span>$85M</span>
+                        <div class="bar-label">Year 5<br>2030</div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Year 1</th>
+                        <th>Year 2</th>
+                        <th>Year 3</th>
+                        <th>Year 4</th>
+                        <th>Year 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Customers</strong></td>
+                        <td>1,000</td>
+                        <td>5,000</td>
+                        <td>12,000</td>
+                        <td>22,000</td>
+                        <td>35,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ARPU (Annual)</strong></td>
+                        <td>$2,400</td>
+                        <td>$2,400</td>
+                        <td>$2,350</td>
+                        <td>$2,360</td>
+                        <td>$2,430</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ARR</strong></td>
+                        <td>$2.4M</td>
+                        <td>$12M</td>
+                        <td>$28M</td>
+                        <td>$52M</td>
+                        <td>$85M</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gross Margin</strong></td>
+                        <td>75%</td>
+                        <td>78%</td>
+                        <td>82%</td>
+                        <td>85%</td>
+                        <td>87%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Net Margin</strong></td>
+                        <td>-15%</td>
+                        <td>5%</td>
+                        <td>18%</td>
+                        <td>28%</td>
+                        <td>35%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Slide 8: Funding Strategy -->
+        <div class="slide white">
+            <h2>💰 Funding Strategy & Runway</h2>
+            
+            <div class="funding-stage">
+                <h3>💎 Series A: $5M (Current Round)</h3>
+                <div class="two-column">
+                    <div>
+                        <h4>Use of Funds</h4>
+                        <ul>
+                            <li><strong>Product Development:</strong> $2M (40%)</li>
+                            <li><strong>Sales & Marketing:</strong> $1.5M (30%)</li>
+                            <li><strong>Team Expansion:</strong> $1M (20%)</li>
+                            <li><strong>Operations:</strong> $0.5M (10%)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>18-Month Runway Milestones</h4>
+                        <ul>
+                            <li><strong>Month 6:</strong> 500 customers, $1.2M ARR</li>
+                            <li><strong>Month 12:</strong> 2,000 customers, $4.8M ARR</li>
+                            <li><strong>Month 18:</strong> 5,000 customers, $12M ARR</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="funding-stage">
+                <h3>🚀 Series B: $15M (Month 18)</h3>
+                <div class="two-column">
+                    <div>
+                        <h4>Use of Funds</h4>
+                        <ul>
+                            <li><strong>International Expansion:</strong> $6M (40%)</li>
+                            <li><strong>Enterprise Sales:</strong> $4.5M (30%)</li>
+                            <li><strong>Advanced R&D:</strong> $3M (20%)</li>
+                            <li><strong>Strategic Partnerships:</strong> $1.5M (10%)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>24-Month Runway Milestones</h4>
+                        <ul>
+                            <li><strong>Month 24:</strong> 12,000 customers</li>
+                            <li><strong>Month 36:</strong> 22,000 customers</li>
+                            <li><strong>Month 42:</strong> Profitability achieved</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Exit Strategy</h3>
+            <ul>
+                <li><strong>Strategic Acquisition:</strong> Google, Microsoft, Salesforce (3-5 years, 8-12x revenue)</li>
+                <li><strong>IPO Option:</strong> $100M+ ARR, 5-7 years</li>
+                <li><strong>Expected Valuation:</strong> $500M-1B at exit</li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: Competitive Landscape -->
+        <div class="slide">
+            <h2>⚔️ Competitive Landscape & Differentiation</h2>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Competitor</th>
+                        <th>Valuation</th>
+                        <th>Customers</th>
+                        <th>Key Weakness</th>
+                        <th>Panda AI Advantage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bear AI</strong></td>
+                        <td>$120M</td>
+                        <td>1,800</td>
+                        <td>Manual processes, 3 platforms</td>
+                        <td>Autonomous agents, 50+ platforms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Competitor B</strong></td>
+                        <td>$80M</td>
+                        <td>1,200</td>
+                        <td>No AI optimization</td>
+                        <td>True AI-driven optimization</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legacy Tools</strong></td>
+                        <td>$200M+</td>
+                        <td>5,000+</td>
+                        <td>No AI platform focus</td>
+                        <td>AI-first approach</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🏆 Sustainable Competitive Advantages</h3>
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <h4>Technology Moat</h4>
+                    <p>18-month lead in autonomous agent development</p>
+                    <p><span class="highlight">Patent-pending</span> AI architecture</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Data Network Effects</h4>
+                    <p>More customers = better AI predictions</p>
+                    <p><span class="highlight">Virtuous cycle</span> of improvement</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Platform Partnerships</h4>
+                    <p>Exclusive integrations with AI platforms</p>
+                    <p><span class="highlight">First-mover</span> advantage</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Risk Analysis -->
+        <div class="slide white">
+            <h2>⚠️ Risk Analysis & Mitigation</h2>
+            
+            <div class="risk-item">
+                <h3>🔴 High Risk: Technology Competition</h3>
+                <p><strong>Risk:</strong> Bear AI or others develop autonomous agents</p>
+                <div class="mitigation">
+                    <strong>Mitigation:</strong>
+                    <ul>
+                        <li>18-month technology lead with patent protection</li>
+                        <li>Continuous R&D investment (20% of revenue)</li>
+                        <li>First-mover advantage in data collection</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="risk-item">
+                <h3>🟡 Medium Risk: Market Adoption</h3>
+                <p><strong>Risk:</strong> Slower than expected customer adoption</p>
+                <div class="mitigation">
+                    <strong>Mitigation:</strong>
+                    <ul>
+                        <li>Clear ROI demonstration (340% in 90 days)</li>
+                        <li>Freemium model for easy trial</li>
+                        <li>Bear AI customer migration incentives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="risk-item">
+                <h3>🟢 Low Risk: Technical Scalability</h3>
+                <p><strong>Risk:</strong> Platform cannot handle growth</p>
+                <div class="mitigation">
+                    <strong>Mitigation:</strong>
+                    <ul>
+                        <li>Cloud-native architecture from day one</li>
+                        <li>Proven scalability patterns</li>
+                        <li>Infrastructure team expertise</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Success Factors</h3>
+            <ul>
+                <li><strong>Team Excellence:</strong> Proven track record in AI/ML and SaaS</li>
+                <li><strong>Market Timing:</strong> AI adoption accelerating across enterprises</li>
+                <li><strong>Clear Differentiation:</strong> Autonomous vs manual approach</li>
+                <li><strong>Customer Validation:</strong> Strong demand from Bear AI limitations</li>
+            </ul>
+        </div>
+
+        <!-- Slide 11: Go-to-Market Strategy -->
+        <div class="slide">
+            <h2>🎯 Go-to-Market Strategy</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Phase 1: Direct Sales</h4>
+                    <p><strong>Months 1-6</strong></p>
+                    <ul style="text-align: left;">
+                        <li>Target Bear AI switchers</li>
+                        <li>Direct outreach campaign</li>
+                        <li>50% discount for switchers</li>
+                        <li>Goal: 500 customers</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Phase 2: Scale Sales</h4>
+                    <p><strong>Months 6-12</strong></p>
+                    <ul style="text-align: left;">
+                        <li>Build sales team (10 reps)</li>
+                        <li>Enterprise account targeting</li>
+                        <li>Channel partnerships</li>
+                        <li>Goal: 2,000 customers</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h4>Phase 3: Market Leadership</h4>
+                    <p><strong>Months 12-18</strong></p>
+                    <ul style="text-align: left;">
+                        <li>Brand marketing campaign</li>
+                        <li>Thought leadership</li>
+                        <li>International expansion</li>
+                        <li>Goal: 5,000 customers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="column">
+                    <h3>Customer Acquisition Channels</h3>
+                    <ul>
+                        <li><strong>Direct Sales:</strong> 40% of customers</li>
+                        <li><strong>Inbound Marketing:</strong> 25% of customers</li>
+                        <li><strong>Partner Referrals:</strong> 20% of customers</li>
+                        <li><strong>Content Marketing:</strong> 15% of customers</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Pricing Strategy</h3>
+                    <ul>
+                        <li><strong>Starter:</strong> $149/month (vs Bear AI $200)</li>
+                        <li><strong>Professional:</strong> $399/month</li>
+                        <li><strong>Enterprise:</strong> $999/month+</li>
+                        <li><strong>Freemium:</strong> 7-day full trial</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Team & Advisory -->
+        <div class="slide white">
+            <h2>👥 Team & Advisory Board</h2>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <h3>🧠 Founding Team</h3>
+                    <ul style="text-align: left;">
+                        <li><strong>CEO:</strong> Ex-Google AI, 10+ years ML</li>
+                        <li><strong>CTO:</strong> Ex-Meta, distributed systems</li>
+                        <li><strong>VP Product:</strong> Ex-Salesforce, SaaS PMF</li>
+                        <li><strong>VP Sales:</strong> Ex-HubSpot, $50M+ ARR</li>
+                    </ul>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>🎯 Key Hires (Next 6 months)</h3>
+                    <ul style="text-align: left;">
+                        <li><strong>Head of AI:</strong> Advanced ML algorithms</li>
+                        <li><strong>Head of Marketing:</strong> B2B SaaS growth</li>
+                        <li><strong>Head of Customer Success:</strong> Enterprise adoption</li>
+                        <li><strong>Principal Engineers:</strong> Scaling team</li>
+                    </ul>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>🌟 Advisory Board</h3>
+                    <ul style="text-align: left;">
+                        <li><strong>AI Expert:</strong> Ex-OpenAI Research Lead</li>
+                        <li><strong>SaaS Expert:</strong> Ex-Slack VP Growth</li>
+                        <li><strong>Enterprise Expert:</strong> Ex-Microsoft CVP</li>
+                        <li><strong>Investor:</strong> Tier 1 VC Partner</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Why This Team Will Win</h3>
+            <ul>
+                <li><strong>Domain Expertise:</strong> Deep AI/ML background with SaaS scaling experience</li>
+                <li><strong>Proven Track Record:</strong> Previous exits totaling $500M+</li>
+                <li><strong>Market Knowledge:</strong> Intimate understanding of Bear AI's limitations</li>
+                <li><strong>Execution Focus:</strong> MVP already built and deployed</li>
+                <li><strong>Investor Network:</strong> Strong relationships with top-tier VCs</li>
+            </ul>
+        </div>
+
+        <!-- Slide 13: Investment Terms -->
+        <div class="slide">
+            <h2>📄 Investment Terms & Structure</h2>
+            
+            <div class="funding-stage">
+                <h3>Series A Investment Details</h3>
+                <div class="two-column">
+                    <div>
+                        <h4>Financial Terms</h4>
+                        <ul>
+                            <li><strong>Round Size:</strong> $5M</li>
+                            <li><strong>Pre-money Valuation:</strong> $15M</li>
+                            <li><strong>Post-money Valuation:</strong> $20M</li>
+                            <li><strong>Investor Equity:</strong> 25%</li>
+                            <li><strong>Liquidation Preference:</strong> 1x non-participating</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Governance Terms</h4>
+                        <ul>
+                            <li><strong>Board Composition:</strong> 5 seats (2 founders, 2 investors, 1 independent)</li>
+                            <li><strong>Protective Provisions:</strong> Standard VC terms</li>
+                            <li><strong>Anti-dilution:</strong> Weighted average broad-based</li>
+                            <li><strong>Drag-along Rights:</strong> Standard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Use of Funds Breakdown</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Percentage</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Product Development</strong></td>
+                        <td>$2,000,000</td>
+                        <td>40%</td>
+                        <td>AI agent enhancement, platform expansion</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sales & Marketing</strong></td>
+                        <td>$1,500,000</td>
+                        <td>30%</td>
+                        <td>Customer acquisition, brand building</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Team Expansion</strong></td>
+                        <td>$1,000,000</td>
+                        <td>20%</td>
+                        <td>Key hires across engineering and sales</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Operations</strong></td>
+                        <td>$500,000</td>
+                        <td>10%</td>
+                        <td>Infrastructure, legal, compliance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Slide 14: Call to Action -->
+        <div class="slide">
+            <h1>🚀 Join the Autonomous AI Revolution</h1>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <h2>The Opportunity is Clear</h2>
+                <div class="metric-grid" style="margin: 40px 0;">
+                    <div class="metric-card">
+                        <div class="metric-number">$2.4B</div>
+                        <div class="metric-label">Market Size</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">97%</div>
+                        <div class="metric-label">Uncaptured</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">18 mo</div>
+                        <div class="metric-label">Tech Lead</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h3>Experience Panda AI Today</h3>
+                <div style="margin: 30px 0;">
+                    <a href="https://panda-ai-demo.surge.sh" class="demo-button" target="_blank">
+                        🎮 Interactive Demo
+                    </a>
+                    <a href="mailto:invest@panda-ai.com" class="demo-button">
+                        💰 Investment Inquiry
+                    </a>
+                    <a href="https://calendly.com/panda-ai/investor-meeting" class="demo-button">
+                        📅 Schedule Meeting
+                    </a>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid rgba(255,255,255,0.3);">
+                <h3>Contact Information</h3>
+                <p style="font-size: 1.2rem; margin: 15px 0;">
+                    📧 <strong>Email:</strong> invest@panda-ai.com<br>
+                    📱 <strong>Phone:</strong> +1 (555) 123-PANDA<br>
+                    🌐 <strong>Website:</strong> https://panda-ai-demo.surge.sh<br>
+                    📊 <strong>Pitch Deck:</strong> https://panda-ai-demo.surge.sh/pitch-deck.html
+                </p>
+                
+                <p style="font-size: 1.5rem; margin-top: 30px; font-weight: bold;">
+                    <span class="highlight">The future is autonomous. The time is now. 🐼</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Add smooth scrolling and interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate numbers when they come into view
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        if (element.classList.contains('metric-number')) {
+                            animateNumber(element);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all metric numbers
+            document.querySelectorAll('.metric-number').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add hover effects to cards
+            document.querySelectorAll('.metric-card, .timeline-item').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Animate bars in charts
+            document.querySelectorAll('.bar').forEach(bar => {
+                const height = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'height 1.5s ease-out';
+                    bar.style.height = height;
+                }, Math.random() * 500 + 500);
+            });
+        });
+
+        function animateNumber(element) {
+            const finalValue = element.textContent;
+            const isPercentage = finalValue.includes('%');
+            const isDollar = finalValue.includes('$');
+            const isMonths = finalValue.includes('mo');
+            
+            let numericValue = parseFloat(finalValue.replace(/[^0-9.]/g, ''));
+            let currentValue = 0;
+            const increment = numericValue / 50;
+            
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= numericValue) {
+                    currentValue = numericValue;
+                    clearInterval(timer);
+                }
+                
+                let displayValue = Math.floor(currentValue);
+                if (isDollar) {
+                    displayValue = '$' + displayValue + (finalValue.includes('M') ? 'M' : finalValue.includes('K') ? 'K' : '');
+                } else if (isPercentage) {
+                    displayValue = displayValue + '%';
+                } else if (isMonths) {
+                    displayValue = displayValue + ' mo';
+                } else if (finalValue.includes('B')) {
+                    displayValue = '$' + (displayValue / 1000).toFixed(1) + 'B';
+                }
+                
+                element.textContent = displayValue;
+            }, 30);
+        }
+    </script>
+</body>
+</html>
