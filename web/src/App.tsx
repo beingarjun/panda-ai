@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { AuthProvider, useAuth } from "./auth/AuthContext";
-import { SubscriptionProvider } from "./contexts/SubscriptionContext";
+import { AuthProvider, useAuth } from "./auth/AuthContextDemo";
+import { SubscriptionProvider } from "./contexts/SubscriptionContextDemo";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 
