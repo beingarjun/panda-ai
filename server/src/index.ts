@@ -7,6 +7,7 @@ import { ENV } from "./env.js";
 import authRoutes from "./routes/auth.js";
 import analyzeRoutes from "./routes/analyze.js";
 import runsRoutes from "./routes/runs.js";
+import subscriptionRoutes from "./routes/subscription.js";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.get("/health", (_, res) => res.json({ ok: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/analyze", analyzeRoutes);
 app.use("/api/runs", runsRoutes);
+app.use("/api/subscription", subscriptionRoutes);
 
 app.listen(ENV.PORT, () => {
   console.log(`[panda] server listening on :${ENV.PORT}`);

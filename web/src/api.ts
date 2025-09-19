@@ -9,12 +9,44 @@ export async function postJSON<T>(url: string, body: unknown): Promise<T> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
   });
-  if (!res.ok) throw new Error(await res.text());
+  
+  if (!res.ok) {
+    const errorText = await res.text();
+    let errorData;
+    
+    try {
+      errorData = JSON.parse(errorText);
+    } catch {
+      errorData = { message: errorText };
+    }
+    
+    const error = new Error(errorData.message || errorText) as any;
+    error.status = res.status;
+    error.data = errorData;
+    throw error;
+  }
+  
   return res.json();
 }
 
 export async function getJSON<T>(url: string): Promise<T> {
   const res = await fetch(url, { credentials: "include" });
-  if (!res.ok) throw new Error(await res.text());
+  
+  if (!res.ok) {
+    const errorText = await res.text();
+    let errorData;
+    
+    try {
+      errorData = JSON.parse(errorText);
+    } catch {
+      errorData = { message: errorText };
+    }
+    
+    const error = new Error(errorData.message || errorText) as any;
+    error.status = res.status;
+    error.data = errorData;
+    throw error;
+  }
+  
   return res.json();
 }

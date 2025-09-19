@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { postJSON } from "../api";
 import { BarChart } from "../components/Chart";
 import { SimpleTable } from "../components/Table";
+import { useSubscription } from "../contexts/SubscriptionContext";
+import { PricingModal } from "../components/PricingModal";
+import { UsageProgress } from "../components/UsageProgress";
 
 type EngineResult = { engine: string; score: number; sources: {title: string; url: string}[]; issues: string[]; suggestions: string[]; };
 type RankedCompetitor = { name: string; score: number; topical: number; schema: number; freshness: number };
 
 export default function Dashboard() {
+  const { canPerformAction, refreshSubscription } = useSubscription();
   const [website, setWebsite] = useState("");
   const [description, setDescription] = useState("");
   const [topics, setTopics] = useState("");
@@ -14,8 +18,17 @@ export default function Dashboard() {
   const [competitors, setCompetitors] = useState<RankedCompetitor[]>([]);
   const [engines, setEngines] = useState<EngineResult[]>([]);
   const [analysis, setAnalysis] = useState<{ summary: string; reasons: string[]; actions: string[] }|null>(null);
+  const [showPricingModal, setShowPricingModal] = useState(false);
+  const [pricingReason, setPricingReason] = useState("");
 
   async function runTrial() {
+    // Check subscription limits before running analysis
+    if (!canPerformAction('analysis')) {
+      setPricingReason("You've reached your monthly analysis limit. Upgrade to continue analyzing competitors.");
+      setShowPricingModal(true);
+      return;
+    }
+
     try {
       const res = await postJSON<{
         runId: string;
@@ -28,14 +41,25 @@ export default function Dashboard() {
       setCompetitors(res.competitors);
       setEngines(res.engineResults);
       setAnalysis(res.analysis);
-    } catch (error) {
-      alert("Error running analysis: " + error);
+      
+      // Refresh subscription data after successful analysis
+      await refreshSubscription();
+    } catch (error: any) {
+      if (error.status === 403) {
+        setPricingReason(error.message || "You've reached your monthly analysis limit. Upgrade to continue.");
+        setShowPricingModal(true);
+      } else {
+        alert("Error running analysis: " + error);
+      }
     }
   }
 
   return (
     <div style={{ padding: 24, display: "grid", gap: 16 }}>
       <h2>Panda AI — Dashboard</h2>
+
+      {/* Usage Progress */}
+      <UsageProgress />
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
         <input 
@@ -135,6 +159,13 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+
+      {/* Pricing Modal */}
+      <PricingModal 
+        isOpen={showPricingModal}
+        onClose={() => setShowPricingModal(false)}
+        reason={pricingReason}
+      />
     </div>
   );
 }

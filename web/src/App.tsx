@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AuthProvider, useAuth } from "./auth/AuthContext";
+import { SubscriptionProvider } from "./contexts/SubscriptionContext";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 
@@ -156,5 +157,11 @@ function Shell() {
 }
 
 export default function App() {
-  return <AuthProvider><Shell /></AuthProvider>;
+  return (
+    <AuthProvider>
+      <SubscriptionProvider>
+        <Shell />
+      </SubscriptionProvider>
+    </AuthProvider>
+  );
 }
