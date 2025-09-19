@@ -16,7 +16,7 @@ type Ctx = {
   signout(): Promise<void>;
   signinWithGoogle(): void;
   signinWithMicrosoft(): void;
-  signinWithApple(): void;
+  // signinWithApple(): void; // Disabled - requires additional configuration
 };
 
 const AuthCtx = createContext<Ctx>(null as any);
@@ -60,9 +60,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     window.location.href = "/api/auth/microsoft";
   }
 
-  function signinWithApple() {
-    window.location.href = "/api/auth/apple";
-  }
+  // Apple OAuth disabled - requires additional configuration
+  // function signinWithApple() {
+  //   window.location.href = "/api/auth/apple";
+  // }
 
   return (
     <AuthCtx.Provider value={{ 
@@ -71,8 +72,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       signup, 
       signout, 
       signinWithGoogle, 
-      signinWithMicrosoft, 
-      signinWithApple 
+      signinWithMicrosoft
+      // signinWithApple // Disabled
     }}>
       {children}
     </AuthCtx.Provider>

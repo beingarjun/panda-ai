@@ -72,20 +72,20 @@ r.get("/microsoft/callback",
   }
 );
 
-// Apple OAuth routes
-r.get("/apple", passport.authenticate("apple"));
+// Apple OAuth routes (disabled - requires additional configuration)
+// r.get("/apple", passport.authenticate("apple"));
 
-r.post("/apple/callback",
-  passport.authenticate("apple", { session: false }),
-  (req: any, res) => {
-    const user = req.user;
-    if (!user) return res.redirect(`${process.env.CORS_ORIGIN || 'http://localhost:5173'}?error=auth_failed`);
-    
-    const token = sign({ uid: user.id, email: user.email });
-    res.cookie("token", token, { httpOnly: true, sameSite: "lax", secure: false, maxAge: 7 * 864e5 });
-    res.redirect(process.env.CORS_ORIGIN || 'http://localhost:5173');
-  }
-);
+// r.post("/apple/callback",
+//   passport.authenticate("apple", { session: false }),
+//   (req: any, res) => {
+//     const user = req.user;
+//     if (!user) return res.redirect(`${process.env.CORS_ORIGIN || 'http://localhost:5173'}?error=auth_failed`);
+//     
+//     const token = sign({ uid: user.id, email: user.email });
+//     res.cookie("token", token, { httpOnly: true, sameSite: "lax", secure: false, maxAge: 7 * 864e5 });
+//     res.redirect(process.env.CORS_ORIGIN || 'http://localhost:5173');
+//   }
+// );
 
 r.post("/logout", (req, res) => {
   res.clearCookie("token");

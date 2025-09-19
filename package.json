@@ -1,5 +1,13 @@
 {
   "name": "panda-ai",
   "private": true,
-  "workspaces": ["server", "web"]
+  "workspaces": ["server", "web"],
+  "scripts": {
+    "build": "npm --workspace server run build && npm --workspace web run build",
+    "dev": "concurrently \"npm --workspace server run dev\" \"npm --workspace web run dev\"",
+    "test": "npm --workspace server run test && npm --workspace web run test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
